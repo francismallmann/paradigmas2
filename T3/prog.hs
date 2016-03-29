@@ -43,29 +43,67 @@ sonegativo x = if (head x) < 0
 
 
 --Defina uma função não-recursiva que receba uma string e retire suas vogais, conforme os exemplos abaixo.
+semVogais :: String -> String
+semVogais [] = []
+semVogais x = [n | n <- x, not (n `elem` "aeiou")]
+
 
 
 --Expresse uma solução recursiva para o exercício anterior.
+semVogaisr :: String -> String
+semVogaisr [] = []
+semVogaisr (x:xs)
+		| x `elem` "aeiou" = semVogaisr xs
+		| otherwise = x : semVogaisr xs
 
 
 --Defina uma função não-recursiva que receba uma string, possivelmente contendo espaços, e que retorne outra string substituindo os demais caracteres por '-', mas mantendo os espaços. Exemplos:
+codifica :: String -> String
+codifica [] = []
+codifica x = map (\n -> if (n == ' ') then ' ' else '-') x
+
 
 
 --Defina uma função recursiva que resolva o mesmo problema do exercício anterior.
-
+codificar :: String -> String
+codificar [] = []
+codificar (x:xs)
+		| x /= ' ' = '-' : codificar xs
+		| otherwise = ' ' : codificar xs
 
 --Crie uma função recursiva charFound :: Char -> String -> Bool, que verifique se o caracter (primeiro argumento) está contido na string (segundo argumento). Exemplos de uso da função:
-
+charFound :: Char -> String -> Bool
+charFound x y 
+		| y == [] = False
+		| x == head y = True
+		| x /= head y = charFound x (tail y) 
 
 
 --Defina uma função recursiva que receba uma lista de coordenadas de pontos 2D e desloque esses pontos em 2 unidades, conforme o exemplo abaixo:
+translate :: [(Float, Float)] -> [(Float, Float)]
+translate [] = []
+translate (x:xs) = (fst x + 2, snd x + 2) : translate xs
+
 
 
 --Defina uma função recursiva que receba 2 listas e retorne uma lista contendo o produto, par a par, dos elementos das listas de entrada. Exemplos:
+prodVet :: [Int] -> [Int] -> [Int]
+prodVet [] _ = []
+prodVet (x:xs) (y:ys) = x * y : prodVet xs ys
+
 
 
 
 --Resolva o exercício anterior usando uma função de alta ordem, eliminando a necessidade de escrever código com recursão.
+prodVeta :: [Int] -> [Int] -> [Int]
+prodVeta [] _ = []
+prodVeta x y = zipWith (*) x y
+
 
 
 --Defina uma função recursiva que receba um número n e retorne uma tabela de números de 1 a n e seus quadrados, conforme os exemplos abaixo:
+
+geraTabela :: Int -> [(Int, Int)]
+geraTabela 0 = []
+geraTabela x = (x, x^2) : geraTabela (x-1)
+
