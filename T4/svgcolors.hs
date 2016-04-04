@@ -1,4 +1,7 @@
 import Text.Printf
+import System.Random
+import System.IO.Unsafe
+
 
 type Point     = (Float,Float)
 type Rect      = (Point,Float,Float)
@@ -29,13 +32,39 @@ genRects :: Float -> Float -> Float -> [Rect]
 -- Remova a linha abaixo antes de implementar a nova funcao recursiva
 --genRects n w h = [((0.0,0.0), w, h)] -- Lista com somente um retangulo.
 genRects 0 _ _ = []
+--(x,y),w,h = x horizontal, y vertical, calcula o x pelo n para posicionar os quadrados
 genRects n w h = [(((n*50)-50,0.0),w,h)] ++ genRects(n-1) w h 
 
 -- Combina (zip) a lista de estilos com a lista de retangulos, aplicando os estilos ciclicamente.
 -- Se houverem mais retangulos que cores, havera retangulos com cores repetidas.
 -- Se houverem menos retangulos que cores, algumas cores nao serao usadas.
 applyStyles :: [String] -> [Rect] -> [(Rect,String)]
-applyStyles styles rects = zip rects (cycle styles)
+applyStyles styles rects = myzip (cycle styles) rects
+
+--myzip
+myzip :: [String] -> [Rect] -> [(Rect,String)]
+myzip _ [] = []
+myzip (x:xs) (y:ys) = [(y,x)] ++ myzip xs ys
+
+--cor
+--randomRGB :: Int -> String
+--randomRGB n = printf "fill:rgb(0, "++(rnd)++",255)"
+
+--rnd :: Int
+--rnd = unsafePerformIO (getStdRandom (randomR(0, 255)))
+
+--cores :: Int -> [String]
+--cores 0 = []
+--cores n = (randomRGB n) : cores (n-1)
+
+randomRGB :: Int -> Int -> Int -> String
+randomRGB a b c = printf "fill:rgb(%d, %d, %d)" a b c
+
+cores :: Int -> [String]
+cores 0 = []
+cores n = randomRGB (n*50) (n*25) (n*5) : cores (n-1)
+
+
       
 {--
      O codigo abaixo gera um arquivo "mycolors.svg".
@@ -46,6 +75,7 @@ main :: IO ()
 main = do
   let
     rects = genRects 10 50 50                          -- Deve gerar 10 retangulos de 50x50
-    styles = ["fill:rgb(140,0,0)","fill:rgb(0,140,0)"] -- Estilo: vermelho e verde
+    --styles = ["fill:rgb(140,0,0)","fill:rgb(0,140,0)"] -- Estilo: vermelho e verde
+    styles = cores 10
     rectstyles = applyStyles styles rects
   writeFile "mycolors.svg" (writeAllRects maxWidth maxHeight rectstyles)
