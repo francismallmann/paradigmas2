@@ -1,2 +1,2 @@
 # Francis Mallmann Schappo
-#Paradimas da Programação
+#Paradigmas da Programação 2016-1
