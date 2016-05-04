@@ -1,11 +1,37 @@
 
 
+
+
+/*o onibus A deve partir as 6:00*/
+
 condicao1(O) :- O = [a,_,_,_,_,_,_].
+
+/*o onibus E deve partir apos o onibus C e tambem
+apos o onibus B*/
 
 condicao2(O) :- O = [_,b,c,e,_,_,_].
 condicao2(O) :- O = [_,_,b,c,e,_,_].
 condicao2(O) :- O = [_,_,_,b,c,e,_].
 condicao2(O) :- O = [_,_,_,_,b,c,e].
+condicao2(O) :- O = [_,c,b,e,_,_,_].
+condicao2(O) :- O = [_,_,c,b,e,_,_].
+condicao2(O) :- O = [_,_,_,c,b,e,_].
+condicao2(O) :- O = [_,_,_,_,c,b,e].
+condicao2(O) :- O = [_,b,c,_,e,_,_].
+condicao2(O) :- O = [_,b,c,_,_,e,_].
+condicao2(O) :- O = [_,b,c,_,_,_,e].
+condicao2(O) :- O = [_,c,b,_,e,_,_].
+condicao2(O) :- O = [_,c,b,_,_,e,_].
+condicao2(O) :- O = [_,c,b,_,_,_,e].
+condicao2(O) :- O = [_,_,b,c,_,e,_].
+condicao2(O) :- O = [_,_,b,c,_,_,e].
+condicao2(O) :- O = [_,_,c,b,_,e,_].
+condicao2(O) :- O = [_,_,c,b,_,_,e].
+condicao2(O) :- O = [_,_,_,b,c,_,e].
+condicao2(O) :- O = [_,_,_,c,b,_,e].
+
+
+/*os onibus D, F e G devem partir em horarios consecutivos, nessa ordem.*/
 
 condicao3(O) :- O = [_,d,f,g,_,_,_].
 condicao3(O) :- O = [_,_,d,f,g,_,_].
@@ -29,3 +55,103 @@ saida(O) :- O = [_,_,_,_,_,_,_],
 						condicao1(O),
 						condicao2(O),
 						condicao3(O).
+
+
+
+/*Questao 1. Se o ˆonibus G for escalado para partir as 9:00, o onibus E deve ser escalado para partir as
+ 
+(E) 12:00
+
+?- saida([_,_,_,g,e,_,_]).
+false.
+
+?- saida([_,_,_,g,_,e,_]).
+false.
+
+?- saida([_,_,_,g,_,_,e]).
+true .
+
+Questao 2. Se os onibus C e D forem escalados para partir as 8:00 e 9:00, respectivamente, o onibus B deve ser escalado para partir as
+ 
+(B) 7:00 
+
+
+?- saida([_,b,c,d,_,_,_]).
+true .
+
+?- saida([_,_,c,d,b,_,_]).
+false.
+
+?- saida([_,_,c,d,_,b,_]).
+false.
+
+?- saida([_,_,c,d,_,_,b]).
+false.
+
+
+
+
+Quest ̃ao 3. Qual das seguintes alternativas lista trˆes ˆonibus que podem ser escalados para partir na ordem
+dada, em hor ́arios consecutivos?
+
+(D) F,G,C
+
+
+?- saida([_,_,b,c,f,_,_]).
+false.
+
+?- saida([_,_,_,b,c,f,_]).
+false.
+
+?- saida([_,_,_,_,b,c,f]).
+false.
+
+?- saida([_,d,e,f,_,_,_]).
+false.
+
+?- saida([_,_,d,e,f,_,_]).
+false.
+
+?- saida([_,_,_,d,e,f,_]).
+false.
+
+?- saida([_,_,_,_,d,e,f]).
+false.
+
+?- saida([_,f,g,c,_,_,_]).
+false.
+
+?- saida([_,_,f,g,c,_,_]).
+true .
+
+?- saida([_,_,_,f,g,c,_]).
+false.
+
+
+
+Questao 4. Se o onibus F for escalado para partir as 11:00, o onibus E deve ser escalado para partir as
+ 
+(C) 9:00 
+
+
+?- saida([_,e,_,_,_,f,_]).
+false.
+
+?- saida([_,_,e,_,_,f,_]).
+false.
+
+?- saida([_,_,_,e,_,f,_]).
+true .
+
+?- saida([_,_,_,_,e,f,_]).
+false.
+
+?- saida([_,_,_,_,_,f,e]).
+false.
+
+
+
+
+
+
+*/
