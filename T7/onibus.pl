@@ -152,6 +152,129 @@ false.
 
 
 
+Questao 5. Qual das seguintes afirmacoes  e necessariamente verdadeira?
+
+(E) O onibus G esta escalado para partir apos o onibus F.
+
+
+Escolha pelo somatorio de True
+
+
+?- saida([_,b,c,_,_,_,_]).
+true 
+true 
+false.
+
+?- saida([_,_,b,c,_,_,_]).
+false.
+
+?- saida([_,_,_,b,c,_,_]).
+false.
+
+?- saida([_,_,_,_,b,c,_]).
+true 
+false.
+
+?- saida([_,_,_,_,_,b,c]).
+false.
+
+?- saida([_,c,d,_,_,_,_]).
+false.
+
+?- saida([_,_,c,d,_,_,_]).
+true 
+false.
+
+?- saida([_,_,_,c,d,_,_]).
+false.
+
+?- saida([_,_,_,_,c,d,_]).
+false.
+
+?- saida([_,_,_,_,_,c,d]).
+false.
+
+?- saida([_,d,e,_,_,_,_]).
+false.
+
+?- saida([_,_,d,e,_,_,_]).
+false.
+
+?- saida([_,_,_,d,e,_,_]).
+false.
+
+?- saida([_,_,_,_,d,e,_]).
+false.
+
+?- saida([_,_,_,_,_,d,e]).
+false.
+
+?- saida([_,e,f,_,_,_,_]).
+false.
+
+?- saida([_,_,e,f,_,_,_]).
+false.
+
+?- saida([_,_,_,e,f,_,_]).
+false.
+
+?- saida([_,_,_,_,e,f,_]).
+false.
+
+?- saida([_,_,_,_,_,e,f]).
+false.
+
+?- saida([_,f,g,_,_,_,_]).
+false.
+
+?- saida([_,_,f,g,_,_,_]).
+true 
+true 
+false.
+
+?- saida([_,_,_,f,g,_,_]).
+false.
+
+?- saida([_,_,_,_,f,g,_]).
+true 
+true 
+false.
+
+?- saida([_,_,_,_,_,f,g]).
+true 
+true 
+false.
+
+
+
+
+Questao 6. Qual  e o horario mais tardio para o qual o onibus B pode ser escalado para partir?
+ 
+(E) 11:00
+
+?- saida([_,b,_,_,_,_,_]).
+true .
+
+?- saida([_,_,b,_,_,_,_]).
+true .
+
+?- saida([_,_,_,b,_,_,_]).
+false.
+
+?- saida([_,_,_,_,b,_,_]).
+true .
+
+?- saida([_,_,_,_,_,b,_]).
+true .
+
+?- saida([_,_,_,_,_,_,b]).
+false.
+
+
+
+
+
+
 
 
 */
